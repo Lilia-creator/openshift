@@ -22,21 +22,13 @@ def menu():
 
         monperso = create_perso(pseudo, 20,6,3)
         
-        monster = generate_monst()
-        degat = gestion_degat(monperso[1],monster['La force du monstre'],monperso[3])
-            
-        pv_att = monster['Le PV du monster']
-        pv_deff = monperso[1]
-        resultat = battle_manage(degat,pv_att,pv_deff)
-
-        if resultat == True:
-            compt_ennemi(monsterkilled)
-            print('Le nombre de monstres tués est : ', compt_ennemi(monsterkilled))
-            liste.append(monster[0])
-            print(sys.exit())
-        else:
-            print('bye')
-            print(sys.exit())
+        while monperso[1] > 0 :
+            monsterennemi = generate_monst()
+            battle_manage(monperso, monsterennemi)
+            if monperso[1] > 0 :
+                monsterkilled = compt_ennemi(monsterkilled)
+                liste.append(monsterennemi[0])
+        
         return render_template('home.html', pseudo=pseudo, monsterkilled=monsterkilled, liste=liste )
     return render_template('home.html')
 

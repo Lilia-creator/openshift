@@ -1,35 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Sep  6 13:16:27 2022
-
-@author: chef
-"""
 import sys
-
-
-
-def battle_manage(degat, pv_attaquant, pv_deffenseur) :
+from gestion_degat import gestion_degat 
+def battle_manage(monster, perso) :
     
-    while (pv_attaquant > 0 and pv_deffenseur > 0):
-    
-        pv_deffenseur = pv_deffenseur - degat
-       
-        
-        pv_attaquant = pv_attaquant - degat
-      
-      
-        if ( pv_deffenseur <= 0 and pv_attaquant > 0):
-            
-            print ('Game over, le diffenseur ne peut plus comabattre, le PV est :', pv_deffenseur)
-            return False
-            print(sys.exit())
-        
-        elif ( pv_attaquant <= 0 and pv_deffenseur > 0): 
-            
-            print ('Bravo le personnage a gagné, le pv du monstre est :', pv_attaquant, 'le joueur il lui reste encore', pv_deffenseur, 'PV')
-            return True
-        
-            print(sys.exit())
-    return pv_deffenseur
-        
+    while (monster[1] >= 0 and perso[1] >= 0):
+        monster[1] = gestion_degat(monster[1], perso[2], monster[3])
+        print(f"Le joueur {perso[0]} attaque : Il reste au monstre {monster[0]} {monster[1]} points de vie")
+
+        if (monster[1] >= 0):
+            monster[1] = gestion_degat(perso[1], monster[2], perso[3])
+            print(f"{monster[0]} attaque : Il reste à {perso[0]} {perso[1]} points de vie")
+    if(perso[1] > 0):
+        print(f"Le joueur a vaincu le terrible {monster[0]}!")
+    return perso
