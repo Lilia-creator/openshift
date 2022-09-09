@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+  </head>
+<body>
+
+<h2>Bienvenue dans votre jeux péféré </h2>
+
+<p >Commencer ....</p>
+
+<form action="" method="get" >
+  
+  <div class="form-example">
+     <input type="submit" value="Start !">
+
+    <input type="text" name="pseudo" placeholder="Pseudo" required>
+
+  </div>
+</form>
+
+{% if pseudo %}
+<p id="monstre vaincu"> {{ pseudo }} a vaincu {{ monsterkilled }} monstre !</p>
+{% endif %}
+
+</body>
+</html>
